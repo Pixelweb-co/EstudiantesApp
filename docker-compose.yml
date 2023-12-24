@@ -1,0 +1,61 @@
+version: "3.1"
+services:
+    db:
+        image: mysql
+        restart: always
+        ports: 
+            - "3306:3306"
+        command: --default-authentication-plugin=caching_sha2_password
+        environment:
+            MYSQL_DATABASE: usersSystem
+            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: rd#T453%
+        volumes:
+            - ./backend/dump/admin.sql:/docker-entrypoint-initdb.d/admin.sql
+            - ./backend/conf:/etc/mysql/conf.d
+            - persistent:/var/lib/mysql
+        networks:
+            red_interna:
+                ipv4_address: 192.168.20.20
+        hostname: servidor_database
+    backend:
+      # Construye la imagen utilizando el Dockerfile en el directorio actual
+      build:
+        context: .
+        dockerfile: ./backend/Dockerfile
+    # Mapea el puerto del contenedor al puerto del host (ajústalo según sea necesario)
+      ports:
+        - "2023:2023"
+      networks:
+        red_interna:
+            ipv4_address: 192.168.20.10
+      hostname: servidor_api
+      environment:
+            MYSQL_USER: root
+            MYSQL_PASSWORD: rd#T453%
+            MYSQL_ROOT_PASSWORD: rd#T453%
+            MYSQL_DATABASE: usersSystem
+            MYSQL_HOST: db
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        links: 
+            - db:db
+        ports:
+            - 8000:80
+        environment:
+            MYSQL_USER: root
+            MYSQL_PASSWORD: rd#T453%
+            MYSQL_ROOT_PASSWORD: rd#T453%
+volumes:
+    persistent:
+
+networks:
+    red_web:
+        ipam:
+            config:
+              - subnet: 192.168.10.0/24
+    red_interna:
+        ipam:
+            config:
+              - subnet: 192.168.20.0/24
