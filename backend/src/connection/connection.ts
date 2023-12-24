@@ -1,11 +1,11 @@
 import { Sequelize } from 'sequelize-typescript';
 import {UserModel} from "../models/user.model"
+import env from "react-dotenv";
 
 const connection = new Sequelize({
     dialect:"mysql",
-    //host:"192.168.20.20",
-    //port:3306,
-    host:"localhost",
+    host:"192.168.20.20",
+    //host:"localhost",
     port:3306,
     username:"root",
     password:"rd#T453%",
