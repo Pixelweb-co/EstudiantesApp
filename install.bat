@@ -15,3 +15,5 @@ call npm run build
 cd ..
 
 call docker-compose up -d --build
+timeout /t 5 /nobreak > nul
+start chrome.exe "http://localhost:4488/"
