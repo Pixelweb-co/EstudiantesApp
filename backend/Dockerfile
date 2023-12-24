@@ -5,10 +5,10 @@ FROM node:16-alpine
 WORKDIR /app
 
 # Copia solo el directorio "dist" al directorio de trabajo
-COPY ./dist /app/dist
-COPY ./node_modules /app/node_modules
-COPY ./package.json /app/package.json
-COPY ./tsconfig.json /app/tsconfig.json
+COPY ./backend/dist /app/dist
+COPY ./backend/node_modules /app/node_modules
+COPY ./backend/package.json /app/package.json
+COPY ./backend/tsconfig.json /app/tsconfig.json
 COPY ./mysqlScripts/wait-for-it.sh /app/wait-for-it.sh
 RUN  chmod +x wait-for-it.sh
 

@@ -30,12 +30,30 @@ services:
         red_interna:
             ipv4_address: 192.168.20.10
       hostname: servidor_api
+      depends_on:
+        - db   
       environment:
             MYSQL_USER: root
             MYSQL_PASSWORD: rd#T453%
             MYSQL_ROOT_PASSWORD: rd#T453%
             MYSQL_DATABASE: usersSystem
             MYSQL_HOST: db
+    
+    #puerta de enlace       
+    frontend:
+        # Construye la imagen utilizando el Dockerfile en el directorio actual
+        build:
+            context: .
+            dockerfile: ./frontend/Dockerfile
+        ports:
+            - "4488:80"
+        hostname: frontend
+        networks:
+           red_interna:
+                ipv4_address: 192.168.20.30
+        restart: on-failure
+        depends_on:
+            - backend
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         restart: always
