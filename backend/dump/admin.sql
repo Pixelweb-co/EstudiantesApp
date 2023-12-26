@@ -20,7 +20,7 @@ INSERT INTO `Estudiantes` ( `firstName`, `lastName`, `age_student`, `email`, `fo
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION; 
 FLUSH PRIVILEGES;
 
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER;
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'rd#T453%' PASSWORD EXPIRE NEVER;
 FLUSH PRIVILEGES;
 
 ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'rd#T453%';
