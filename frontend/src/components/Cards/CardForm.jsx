@@ -76,10 +76,11 @@ export default function CardForm(props) {
       .then((response) => {
         setValue('firstName',response.data.data.firstName)
         setValue('lastName',response.data.data.lastName)
-        setValue('age',response.data.data.age)
+        setValue('age_student',response.data.data.age_student)
         setValue('email',response.data.data.email)
         setValue('username',response.data.data.username)
         setValue('password',response.data.data.password)
+        setValue('userRole','student')
 
         
 
@@ -202,14 +203,14 @@ export default function CardForm(props) {
                   </label>
                   <input
                     type="text"
-                    defaultValue={student.age}
+                    defaultValue={student.age_student}
                     className={`border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                       errors.age ? "border-red-500" : ""
                     }`}
-                    {...register("age", { required: "Este campo es obligatorio" })}
+                    {...register("age_student", { required: "Este campo es obligatorio" })}
                   />
                   {errors.age && (
-                    <p className="text-red-500 text-xs italic">{errors.age.message}</p>
+                    <p className="text-red-500 text-xs italic">{errors.age_student.message}</p>
                   )}
                 </div>
               </div>

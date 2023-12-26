@@ -4,8 +4,8 @@ import {UserModel} from "../models/user.model"
 
 const connection = new Sequelize({
     dialect:"mysql",
-    host:"192.168.20.20",
-        //host:"localhost",
+    host:"db",              //en docker
+    //host:"localhost",     // en local
     port:3306,
     username:"root",
     password:"rd#T453%",

@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
@@ -7,6 +7,19 @@ import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
+  
+  const [userLogin, setUserLogin] = React.useState(null)
+
+
+useEffect(() => {
+  
+  setUserLogin(JSON.parse(localStorage.getItem("user")))
+  console.log("userLogin ",userLogin)
+
+},[])
+
+
+
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -119,8 +132,8 @@ export default function Sidebar() {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               
-
-                
+           {userLogin && userLogin.userRole === 'admin' && (         
+            <>    
             <li className="items-center">
                 <Link
                   className={
@@ -152,8 +165,22 @@ export default function Sidebar() {
                   Registrar Estudiante
                 </Link>
               </li>
-
-              
+              </>
+              )}
+            
+            
+            {userLogin && userLogin.userRole === 'student' && (         
+                      <li className="items-center">
+                      <Link
+                        className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                        to={("/admin/formulario-estudiante/"+userLogin.id)}
+                      >
+                        <i className="fas fa-plus text-blueGray-400 mr-2 text-sm"></i>{" "}
+                        Mis datos 
+                      </Link>
+                    </li>
+                )}
+                    
               <li className="items-center">
                 <Link
                   className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"

@@ -19,13 +19,10 @@ export const getUser: RequestHandler = async (req, res) => {
 
 export const list: RequestHandler = async (req, res) => {
     
-        await UserModel.findAll().then(data => {
-            if(data.length > 0) {
-
+        await UserModel.findAll({where:{userRole:'student'}}).then(data => {
+            
                 return res.status(200).json({"result":"success", "data": data })
-            }else{
-                return res.status(401).json({"result":"error", "message": "Usuario / contraseña invalidos" })    
-            }
+            
         }).catch(error =>{
             return res.status(500).json({ "message": "Hubo un error", "error": error })
         })
@@ -34,8 +31,9 @@ export const list: RequestHandler = async (req, res) => {
 
 export const create: RequestHandler = async (req, res) => {
     
-    await UserModel.create({ ...req.body,roleUser:'student' }).then((data) => {
-        return res.status(200).json({"result":"success", "message": "Usuario registrao" })
+    await UserModel.create({ ...req.body}).then((data) => {
+        
+        return res.status(200).json({"result":"success", "message": "Usuario registrao", "data":data})
     }).catch((error) => {
 
         console.log(error)
