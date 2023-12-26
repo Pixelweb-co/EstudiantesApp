@@ -6,6 +6,8 @@ Aplicacion crud en stack Mysql react nodejs express typescript
 Clone el repositorio
 git clone https://github.com/Pixelweb-co/EstudiantesApp.git
 
+cd EstudiantesApp
+
 Ejecute install.bat
 
 Abre tu navegador en la url localhost:3000
