@@ -14,7 +14,6 @@ USE usersystem;
     userRole VARCHAR(255) NULL
 );
 
-
 INSERT INTO `Estudiantes` ( `firstName`, `lastName`, `age_student`, `email`, `foto`, `username`, `password`, `userRole`) VALUES ('admin', 'admin', '0', 'mail@mail.com', 'nofoto.jpg', 'admin', 'admin123', 'admin');
 
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION; 

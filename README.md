@@ -1,4 +1,4 @@
-Gestion Estudiantes 
+<b>Gestion Estudiantes</b> 
 
 Aplicacion crud en stack Mysql react nodejs express typescript
 
@@ -21,7 +21,7 @@ Requisitos de instalación:
 
 Servicios:
 
-Mysql server : http//locahost:8000 
+Mysql server (phpmyadmin) : http//locahost:8000 
 user : root
 password : rd#T453%
 
